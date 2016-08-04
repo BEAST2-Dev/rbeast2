@@ -1,0 +1,22 @@
+---
+title: "Hello world demo"
+author: "Richel Bilderbeek"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Hello world demo}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+This vignette demonstrates the `hello` function:
+
+```{r}
+library(rbeast2)
+```
+
+Call the function:
+
+```{r}
+hello()
+```
