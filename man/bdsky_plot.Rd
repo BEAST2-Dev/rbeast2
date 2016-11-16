@@ -7,7 +7,7 @@
 bdsky_plot(logs = NULL, burninpercent = 10, recent = NULL,
   gridSize = 20, RepNumb = "R0.s",
   bUninfectiousRate = "becomeUninfectiousRate.s",
-  sProportion = "samplingProportion.s")
+  sProportion = "samplingProportion.s", startSampling = NULL)
 }
 \arguments{
 \item{logs}{(character) The path to the log file(s) or the path to the file with
@@ -17,7 +17,7 @@ analyzed or NULL to select (default: NULL)}
 \item{burninpercent}{(interger) The percentage of samples that should be ignored
 from the log file}
 
-\item{recent}{(interger) Date of the most recent sample (for plotting from past
+\item{recent}{(numeric) Date of the most recent sample (for plotting from past
 to present)}
 
 \item{gridSize}{(interger)}
@@ -29,6 +29,10 @@ to present)}
 
 \item{sProportion}{(character) Name of the samplingProportion parameter
 (default: "samplingProportion.s")}
+
+\item{startSampling}{(numeric) If samplingProportion was fixed to zero before
+a sampling date and >0 afterwards, the date when sampling started
+(default: NULL)}
 }
 \value{
 A PDF with the plots
