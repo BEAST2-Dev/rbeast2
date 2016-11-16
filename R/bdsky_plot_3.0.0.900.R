@@ -184,6 +184,7 @@ bdsky_plot <- function(logs=NULL, burninpercent=10, recent=NULL, gridSize=20,
     # /* plot samplingProportion */
     plot(0, ylab=expression(s), xlim=c(recent-width, recent),
          ylim=c(0,max(hpd_H[2,],na.rm=T)*1.1),  xlab="Year", col='white', main='')
+    minor.tick(nx=5, ny=2, tick.ratio=.2)
     polygon(c(F_times,rev(F_times)), c(hpd_H[2,], rev(hpd_H[1,])), col="grey90",
             border=NA)
     lines(F_times, medians_H[1,], type='l')
