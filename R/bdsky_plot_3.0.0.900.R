@@ -85,7 +85,6 @@ bdsky_plot <- function(logs=NULL, burninpercent=10, recent=NULL, gridSize=20,
   if(is.null(recent)) stop("Please provide an integer value for recent")
 
   burninpercent <- as.integer(burninpercent)
-  recent <- as.integer(recent)
   gridSize <- as.integer(gridSize)
 
   for(i in 1:length(loglist[,1])){
