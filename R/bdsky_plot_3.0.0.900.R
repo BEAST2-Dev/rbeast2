@@ -8,7 +8,7 @@
 #'              analyzed or NULL to select (default: NULL)
 #' @param burninpercent (interger) The percentage of samples that should be ignored
 #'                      from the log file
-#' @param recent (interger) Date of the most recent sample (for plotting from past
+#' @param recent (numeric) Date of the most recent sample (for plotting from past
 #'                to present)
 #' @param gridSize (interger)
 #' @param RepNumb (character) Name of the R0 parameter (default: "R0.s")
@@ -16,6 +16,9 @@
 #'           (default: "becomeUninfectiousRate.s")
 #' @param sProportion (character) Name of the samplingProportion parameter
 #'           (default: "samplingProportion.s")
+#' @param startSampling (numeric) If samplingProportion was fixed to zero before
+#'           a sampling date and >0 afterwards, the date when sampling started
+#'           (default: NULL)
 #' @author Denise Kuehnert (denise.kuehnert@gmail.com)
 #' @author Carlo Pacioni (carlo.pacioni@gmail.com)
 #' @return A PDF with the plots
@@ -32,7 +35,8 @@
 bdsky_plot <- function(logs=NULL, burninpercent=10, recent=NULL, gridSize=20,
                        RepNumb="R0.s",
                        bUninfectiousRate="becomeUninfectiousRate.s",
-                       sProportion="samplingProportion.s") {
+                       sProportion="samplingProportion.s",
+                       startSampling=NULL) {
 
   #### Function helper ####
   # input : a matrix M and a column ascii name
@@ -141,8 +145,17 @@ bdsky_plot <- function(logs=NULL, burninpercent=10, recent=NULL, gridSize=20,
                             (recent - F_times[l])/(time/F_intervalNumber))
         G_index <- ceiling(G_intervalNumber -
                             (recent - F_times[l])/(time/G_intervalNumber))
-        H_index <- ceiling(H_intervalNumber -
-                            (recent - F_times[l])/(time/H_intervalNumber))
+        if(is.null(startSampling)) {
+          H_index <- ceiling(H_intervalNumber -
+                               (recent - F_times[l])/(time/H_intervalNumber))
+        } else {
+          if(F_times[l] > startSampling) {
+            H_index <- 2
+          } else {
+            H_index <- 1
+          }
+        }
+
 
         F[k,l] <- get(R0_names[max(F_index, 1)])[k + burnin]
         G[k,l] <- get(delta_names[max(G_index, 1)])[k + burnin]
