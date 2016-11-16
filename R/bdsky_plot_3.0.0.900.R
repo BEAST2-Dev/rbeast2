@@ -105,10 +105,10 @@ bdsky_plot <- function(logs=NULL, burninpercent=10, recent=NULL, gridSize=20,
     treeheights <- get(paste("log", i, sep=''))[, match(
                    "treeheight", tolower(names(get(paste("log", i, sep='')))))]
     origins <- get(paste("log", i, sep=''))$origin
-    width <- median(origins)
 
     nsamples <- length(get(R0_names[1]))
     burnin <- round(burninpercent*nsamples/100)
+    width <- median(origins[burnin:nsamples])
 
     F_intervalNumber <- length(R0_names)
     G_intervalNumber <- length(delta_names)
