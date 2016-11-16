@@ -38,7 +38,7 @@ This function plots the epidemiological parameters of a BDSKY analysis with
 their HPD intervals.
 }
 \author{
-Denise Kühnert (denise.kuehnert@gmail.com)
+Denise Kuehnert (denise.kuehnert@gmail.com)
 
 Carlo Pacioni (carlo.pacioni@gmail.com)
 }

@@ -16,7 +16,7 @@
 #'           (default: "becomeUninfectiousRate.s")
 #' @param sProportion (character) Name of the samplingProportion parameter
 #'           (default: "samplingProportion.s")
-#' @author Denise Kühnert (denise.kuehnert@gmail.com)
+#' @author Denise Kuehnert (denise.kuehnert@gmail.com)
 #' @author Carlo Pacioni (carlo.pacioni@gmail.com)
 #' @return A PDF with the plots
 #' @import s20x
