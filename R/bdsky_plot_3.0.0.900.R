@@ -3,22 +3,22 @@
 #' This function plots the epidemiological parameters of a BDSKY analysis with
 #' their HPD intervals.
 #'
-#' @param logs (character) The path to the log file(s) or the path to the file with
-#'              ".txt" extension that stores the path to all log files to be
-#'              analyzed or NULL to select (default: NULL)
-#' @param burninpercent (interger) The percentage of samples that should be ignored
-#'                      from the log file
-#' @param recent (numeric) Date of the most recent sample (for plotting from past
-#'                to present)
+#' @param logs (character) The path to the log file(s) or the path to the file
+#'   with ".txt" extension that stores the path to all log files to be analyzed
+#'   or NULL to select (default: NULL)
+#' @param burninpercent (interger) The percentage of samples that should be
+#'   ignored from the log file
+#' @param recent (numeric) Date of the most recent sample (for plotting from
+#'   past to present)
 #' @param gridSize (interger)
 #' @param RepNumb (character) Name of the R0 parameter (default: "R0.s")
 #' @param bUninfectiousRate (character) Name of the bacomeUninfectious parameter
-#'           (default: "becomeUninfectiousRate.s")
+#'   (default: "becomeUninfectiousRate.s")
 #' @param sProportion (character) Name of the samplingProportion parameter
-#'           (default: "samplingProportion.s")
-#' @param startSampling (numeric) If samplingProportion was fixed to zero before
-#'           a sampling date and >0 afterwards, the date when sampling started
-#'           (default: NULL)
+#'   (default: "samplingProportion.s")
+#' @param SamplingDates (numeric) If specific times were used to set the changes
+#'   in samplingProportion (using the parameter samplingRateChangeTimes in the
+#'   xml file), the dates of the changes in the rate, otherwise NULL (default)
 #' @author Denise Kuehnert (denise.kuehnert@gmail.com)
 #' @author Carlo Pacioni (carlo.pacioni@gmail.com)
 #' @return A PDF with the plots
@@ -36,7 +36,7 @@ bdsky_plot <- function(logs=NULL, burninpercent=10, recent=NULL, gridSize=20,
                        RepNumb="R0.s",
                        bUninfectiousRate="becomeUninfectiousRate.s",
                        sProportion="samplingProportion.s",
-                       startSampling=NULL) {
+                       SamplingDates=NULL) {
 
   #### Function helper ####
   # input : a matrix M and a column ascii name
@@ -90,6 +90,7 @@ bdsky_plot <- function(logs=NULL, burninpercent=10, recent=NULL, gridSize=20,
 
   burninpercent <- as.integer(burninpercent)
   gridSize <- as.integer(gridSize)
+  if(is.null(SamplingDates)) SamplingDates <- recent
 
   for(i in 1:length(loglist[,1])){
 
@@ -145,17 +146,18 @@ bdsky_plot <- function(logs=NULL, burninpercent=10, recent=NULL, gridSize=20,
                             (recent - F_times[l])/(time/F_intervalNumber))
         G_index <- ceiling(G_intervalNumber -
                             (recent - F_times[l])/(time/G_intervalNumber))
-        if(is.null(startSampling)) {
-          H_index <- ceiling(H_intervalNumber -
-                               (recent - F_times[l])/(time/H_intervalNumber))
+
+        if(F_times[l] <= SamplingDates[1]) {
+          H_index <- 1
         } else {
-          if(F_times[l] > startSampling) {
-            H_index <- 2
+          sinterval <- max(which(F_times[l] > SamplingDates))
+          if(SamplingDates[sinterval + 1] == recent) {
+            H_index <- ceiling(H_intervalNumber -
+                                 (recent - F_times[l])/(time/H_intervalNumber))
           } else {
-            H_index <- 1
+            H_index <- sinterval + 1
           }
         }
-
 
         F[k,l] <- get(R0_names[max(F_index, 1)])[k + burnin]
         G[k,l] <- get(delta_names[max(G_index, 1)])[k + burnin]
