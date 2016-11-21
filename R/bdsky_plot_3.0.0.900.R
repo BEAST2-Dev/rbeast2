@@ -33,7 +33,7 @@
 #' @export
 
 bdsky_plot <- function(logs=NULL, burninpercent=10, recent=NULL, gridSize=20,
-                       RepNumb="R0.s",
+                       RepNumb="reproductiveNumber",
                        bUninfectiousRate="becomeUninfectiousRate.s",
                        sProportion="samplingProportion.s",
                        SamplingDates=NULL) {

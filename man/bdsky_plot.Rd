@@ -5,20 +5,20 @@
 \title{Plot Birth_Death Skyline Plots}
 \usage{
 bdsky_plot(logs = NULL, burninpercent = 10, recent = NULL,
-  gridSize = 20, RepNumb = "R0.s",
+  gridSize = 20, RepNumb = "reproductiveNumber",
   bUninfectiousRate = "becomeUninfectiousRate.s",
-  sProportion = "samplingProportion.s", startSampling = NULL)
+  sProportion = "samplingProportion.s", SamplingDates = NULL)
 }
 \arguments{
-\item{logs}{(character) The path to the log file(s) or the path to the file with
-".txt" extension that stores the path to all log files to be
-analyzed or NULL to select (default: NULL)}
+\item{logs}{(character) The path to the log file(s) or the path to the file
+with ".txt" extension that stores the path to all log files to be analyzed
+or NULL to select (default: NULL)}
 
-\item{burninpercent}{(interger) The percentage of samples that should be ignored
-from the log file}
+\item{burninpercent}{(interger) The percentage of samples that should be
+ignored from the log file}
 
-\item{recent}{(numeric) Date of the most recent sample (for plotting from past
-to present)}
+\item{recent}{(numeric) Date of the most recent sample (for plotting from
+past to present)}
 
 \item{gridSize}{(interger)}
 
@@ -30,9 +30,9 @@ to present)}
 \item{sProportion}{(character) Name of the samplingProportion parameter
 (default: "samplingProportion.s")}
 
-\item{startSampling}{(numeric) If samplingProportion was fixed to zero before
-a sampling date and >0 afterwards, the date when sampling started
-(default: NULL)}
+\item{SamplingDates}{(numeric) If specific times were used to set the changes
+in samplingProportion (using the parameter samplingRateChangeTimes in the
+xml file), the dates of the changes in the rate, otherwise NULL (default)}
 }
 \value{
 A PDF with the plots
