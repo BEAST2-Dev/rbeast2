@@ -14,17 +14,17 @@ bdsky_plot(logs = NULL, burninpercent = 10, recent = NULL,
 with ".txt" extension that stores the path to all log files to be analyzed
 or NULL to select (default: NULL)}
 
-\item{burninpercent}{(interger) The percentage of samples that should be
+\item{burninpercent}{(integer) The percentage of samples that should be
 ignored from the log file}
 
 \item{recent}{(numeric) Date of the most recent sample (for plotting from
 past to present)}
 
-\item{gridSize}{(interger)}
+\item{gridSize}{(integer)}
 
 \item{RepNumb}{(character) Name of the R0 parameter (default: "R0.s")}
 
-\item{bUninfectiousRate}{(character) Name of the bacomeUninfectious parameter
+\item{bUninfectiousRate}{(character) Name of the becomeUninfectious parameter
 (default: "becomeUninfectiousRate.s")}
 
 \item{sProportion}{(character) Name of the samplingProportion parameter
@@ -40,6 +40,11 @@ A PDF with the plots
 \description{
 This function plots the epidemiological parameters of a BDSKY analysis with
 their HPD intervals.
+}
+\details{
+Currently, specific times can only be used for samplingProportion (using the
+  parameter samplingRateChangeTimes in the xml file) and must be provided
+  (in the xml file) in order from the oldest to the most recent.
 }
 \author{
 Denise Kuehnert (denise.kuehnert@gmail.com)
