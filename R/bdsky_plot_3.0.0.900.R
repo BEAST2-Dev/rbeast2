@@ -93,6 +93,7 @@ bdsky_plot <- function(logs=NULL, burninpercent=10, recent=NULL, gridSize=20,
   if(is.null(SamplingDates)) SamplingDates <- recent
 
   for(i in 1:length(loglist[,1])){
+    dir.out <- dirname(loglist[i,])
 
     # /* read and assign file from log list */
     assign(paste("log", i, sep=''), read.table(loglist[i,], header=T))
@@ -207,7 +208,7 @@ bdsky_plot <- function(logs=NULL, burninpercent=10, recent=NULL, gridSize=20,
 
     # /* copy to pdf file, filename includes seed from logfile */
     seed <- unlist(strsplit(tail(unlist(strsplit(loglist[i,],'_')),1),'.log'))[1]
-    dev.copy2pdf(file=paste("bdsky_plot_", i, "_", seed, ".pdf", sep=''))
+    dev.copy2pdf(file=paste(dir.out, paste0("bdsky_plot_", i, "_", seed, ".pdf"), sep='/'))
     detach(get(paste("log", i, sep='')))
   }
 }
