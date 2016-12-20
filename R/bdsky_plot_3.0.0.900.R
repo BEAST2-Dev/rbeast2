@@ -4,8 +4,8 @@
 #' their HPD intervals.
 #'
 #' Currently, specific times can only be used for samplingProportion (using the
-#'   parameter samplingRateChangeTimes in the xml file) and must be provided
-#'   (in the xml file) in order from the oldest to the most recent.
+#' parameter samplingRateChangeTimes in the xml input file for BEAST) and must
+#' be provided (in the xml file) in order from the oldest to the most recent.
 #'
 #' @param logs (character) The path to the log file(s) or the path to the file
 #'   with ".txt" extension that stores the path to all log files to be analyzed
