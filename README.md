@@ -10,5 +10,5 @@ Related packages are:
  * [beautier](https://github.com/richelbilderbeek/beautier) creates BEAST2 input (`.xml`) files.
  * [beastier](https://github.com/richelbilderbeek/beastier) runs BEAST2
  * [tracerer](https://github.com/richelbilderbeek/tracerer) parses BEAST2 output (`.log`, `.trees`, etc) files.
- * [beautier](https://github.com/richelbilderbeek/beautier) provides for the full BEAST2 workflow
+ * [babette](https://github.com/richelbilderbeek/babette) provides for the full BEAST2 workflow
  * [lumier](https://github.com/richelbilderbeek/lumier) demonstrates how to replace the BEAUti setup by a `babette` R command.
